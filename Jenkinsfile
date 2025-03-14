@@ -18,7 +18,7 @@ pipeline {
 		}
 		stage('Deploy') {
 			steps {
-				sh 'cp target/*.war /opt/tomcat/apache-tomcat-9.0.68/webapps/' 
+				sh 'sudo cp target/*.war /opt/tomcat/apache-tomcat-9.0.68/webapps/' 
 				sh '/opt/tomcat/apache-tomcat-9.0.68/bin/shutdown.sh && /opt/tomcat/bin/apache-tomcat-9.0.68/startup.sh'
 			}
 		}
