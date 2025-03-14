@@ -1,9 +1,9 @@
 pipeline {
-	agent { label 'build' }	
+	agent { label 'tomcat' }	
 	stages {
 		stage('Checkout') {
 			steps {
-				https://github.com/naveen230230/simple-java-jenkin-pipeline.git
+				git branch: 'main', credentialsId: 'github', url:https://github.com/naveen230230/simple-java-jenkin-pipeline.git
 			}
 		}
 			stage('test') {
