@@ -5,7 +5,8 @@ pipeline {
 			steps {
 				https://github.com/naveen230230/simple-java-jenkin-pipeline.git
 			}
-		stage('test') {
+		}
+			stage('test') {
 			steps {
 				echo 'Running static tests on code'
 			}
@@ -23,4 +24,4 @@ pipeline {
 		}
 	}
 }
-}
+
