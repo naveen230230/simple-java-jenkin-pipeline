@@ -1,24 +1,26 @@
 pipeline {
-	agent any 	
+	agent { label 'tomcat' }	
 	stages {
 		stage('Checkout') {
 			steps {
-				echo 'Checkout completed'
+				git branch: 'main', credentialsId: 'github', url: https://github.com/naveen230230/simple-java-jenkin-pipeline.git
 			}
 		}
-		stage('Static-test') {
+		stage('test') {
 			steps {
 				echo 'Running static tests on code'
 			}
 		}
 		stage('Build') {
 			steps {
-				sh 'echo "Building the code"'
+				sh 'mvn clean package'
 			}
 		}
 		stage('Deploy') {
 			steps {
-				echo 'Deploying into environment'
+				sh 'cp target/*.war /opt/tomcat/apache-tomcat-9.0.68/webapps/' 
+				sh '/opt/tomcat/apache-tomcat-9.0.68/bin/shutdown.sh && /opt/tomcat/bin/apache-tomcat-9.0.68/startup.sh'
+
 			}
 		}
 	}
